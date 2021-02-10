@@ -1,7 +1,7 @@
 {
-  "name": "angular-mgl-timeline",
+  "name": "angular-mgl-timeline-intrical",
   "author": "Markus Glutting",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -53,7 +53,7 @@
     "karma-coverage-istanbul-reporter": "^2.1.1",
     "karma-jasmine": "~3.1.1",
     "karma-jasmine-html-reporter": "^1.5.2",
-    "ng-packagr": "^9.0.0",
+    "ng-packagr": "^9.1.5",
     "protractor": "^5.4.3",
     "rxjs": "^6.5.4",
     "rxjs-compat": "^6.5.4",

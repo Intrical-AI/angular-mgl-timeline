@@ -1,12 +1,19 @@
-import {HostBinding, ViewEncapsulation} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ContentChild,
+  ElementRef,
+  EventEmitter,
+  OnDestroy,
+  Output
+} from '@angular/core';
+import { HostBinding, Input, ViewEncapsulation } from '@angular/core';
+
+import { MglTimelineEntryContentComponent } from '../timeline-entry-content/timeline-entry-content.component';
+import { MglTimelineEntryDotComponent } from './../timeline-entry-dot/timeline-entry-dot.component';
+import { MglTimelineEntryHeaderComponent } from '../timeline-entry-header/timeline-entry-header.component';
 import { MglTimelineEntrySideComponent } from './../timeline-entry-side/timeline-entry-side.component';
 import { Subscription } from 'rxjs/Subscription';
-import { MglTimelineEntryDotComponent } from './../timeline-entry-dot/timeline-entry-dot.component';
-import {
-  Component, AfterViewInit, Output, EventEmitter, ContentChild, OnDestroy, ElementRef
-} from '@angular/core';
-import { MglTimelineEntryContentComponent } from '../timeline-entry-content/timeline-entry-content.component';
-import { MglTimelineEntryHeaderComponent } from '../timeline-entry-header/timeline-entry-header.component';
 
 @Component({
   selector: 'mgl-timeline-entry',
@@ -15,6 +22,9 @@ import { MglTimelineEntryHeaderComponent } from '../timeline-entry-header/timeli
   encapsulation: ViewEncapsulation.None
 })
 export class MglTimelineEntryComponent implements AfterViewInit, OnDestroy {
+
+  @Input()
+  expandable: boolean = true;
 
   private subscriptions: Subscription[] = [];
 
@@ -107,6 +117,8 @@ export class MglTimelineEntryComponent implements AfterViewInit, OnDestroy {
 
 
   toggle(event: MouseEvent) {
+    if (!this.expandable)
+      return
     const headerFound = this.containsInPath(event, 'mgl-timeline-entry-header');
     const dotFound = this.containsInPath(event, 'mgl-timeline-entry-dot');
     if (headerFound || dotFound) {
